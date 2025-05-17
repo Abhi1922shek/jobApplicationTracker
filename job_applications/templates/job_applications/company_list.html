@@ -1,0 +1,56 @@
+{% extends "base.html" %}  
+  {% block title %}My Companies{% endblock %}
+
+  {% block content %}
+      <h2>My Companies</h2>
+      <p><a href="{% url 'job_applications:company_create' %}" class="button">Add New Company</a></p>
+
+      {% if companies %}
+          <table>
+              <thead>
+                  <tr>
+                      <th>Company Name</th>
+                      <th>Website</th>
+                      <th>Actions</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {% for company in companies %}
+                  <tr>
+                      <td>{{ company.name }}</td>
+                      <td>
+                          {% if company.website %}
+                              <a href="{{ company.website }}" target="_blank">{{ company.website }}</a>
+                          {% else %}
+                              N/A
+                          {% endif %}
+                      </td>
+                      <td class="action-links">
+                          <a href="{% url 'job_applications:company_update' company.pk %}">Edit</a>
+                          <a href="{% url 'job_applications:company_delete' company.pk %}">Delete</a>
+                      </td>
+                  </tr>
+                  {% endfor %}
+              </tbody>
+          </table>
+
+          {% if is_paginated %}
+              <div class="pagination">
+                  <span class="step-links">
+                      {% if page_obj.has_previous %}
+                          <a href="?page=1">« first</a>
+                          <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                      {% endif %}
+                      <span class="current">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+                      {% if page_obj.has_next %}
+                          <a href="?page={{ page_obj.next_page_number }}">next</a>
+                          <a href="?page={{ page_obj.paginator.num_pages }}">last »</a>
+                      {% endif %}
+                  </span>
+              </div>
+          {% endif %}
+      {% else %}
+          <p>You haven't added any companies yet.</p>
+          <p><a href="{% url 'job_applications:company_create' %}" class="button">Add your first company!</a></p>
+      {% endif %}
+  {% endblock %}

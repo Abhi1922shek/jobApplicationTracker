@@ -1,0 +1,33 @@
+
+{% extends "base.html" %}
+{% load crispy_forms_tags %}  
+  {% block title %}{% if form.instance.pk %}Edit Application{% else %}Add New Application{% endif %}{% endblock %}
+
+  {% block content %}
+      <h2>{% if form.instance.pk %}Edit Application{% else %}Add New Application{% endif %}</h2>
+      <form method="post" enctype="multipart/form-data"> {# enctype is crucial for file uploads #}
+          {% csrf_token %}
+          <!-- {{ form.as_p }} -->
+          {% for field in form %}
+              <div class="form-group">
+                  {{ field.label_tag }}
+                  {{ field }}
+                  {% if field.help_text %}
+                      <small class="helptext">{{ field.help_text }}</small>
+                  {% endif %}
+                  {% for error in field.errors %}
+                      <p class="errorlist">{{ error }}</p>
+                  {% endfor %}
+              </div>
+          {% endfor %}
+          {% if form.non_field_errors %}
+              <div class="errorlist">
+                  {% for error in form.non_field_errors %}
+                      <p>{{ error }}</p>
+                  {% endfor %}
+              </div>
+          {% endif %}
+          <button type="submit" class="button">{% if form.instance.pk %}Save Changes{% else %}Add Application{% endif %}</button>
+          <a href="{% if form.instance.pk %}{% url 'job_applications:application_detail' form.instance.pk %}{% else %}{% url 'job_applications:application_list' %}{% endif %}" style="margin-left:10px;">Cancel</a>
+      </form>
+  {% endblock %}

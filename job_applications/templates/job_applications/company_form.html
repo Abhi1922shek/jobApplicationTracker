@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}  
+  {% block title %}{% if form.instance.pk %}Edit Company{% else %}Add New Company{% endif %}{% endblock %}
+
+  {% block content %}
+      <h2>{% if form.instance.pk %}Edit Company{% else %}Add New Company{% endif %}</h2>
+      <form method="post">
+          {% csrf_token %}
+          <!-- {{ form.as_p }} -->
+          {% for field in form %}
+              <div class="form-group">
+                  {{ field.label_tag }}
+                  {{ field }}
+                  {% if field.help_text %}
+                      <small class="helptext">{{ field.help_text }}</small>
+                  {% endif %}
+                  {% for error in field.errors %}
+                      <p class="errorlist">{{ error }}</p>
+                  {% endfor %}
+              </div>
+          {% endfor %}
+          {% if form.non_field_errors %}
+              <div class="errorlist">
+                  {% for error in form.non_field_errors %}
+                      <p>{{ error }}</p>
+                  {% endfor %}
+              </div>
+          {% endif %}
+          <button type="submit" class="button">{% if form.instance.pk %}Save Changes{% else %}Add Company{% endif %}</button>
+          <a href="{% url 'job_applications:company_list' %}" style="margin-left:10px;">Cancel</a>
+      </form>
+  {% endblock %}

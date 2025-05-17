@@ -1,0 +1,14 @@
+{# In application_tracker/job_applications/templates/registration/account_activation_email.html #}
+{% autoescape off %} {# Use autoescape off for plain text emails, or keep on for HTML emails #}
+Hi {{ user.email }},
+
+Thank you for signing up for Job Application Tracker!
+
+Please click on the link below to activate your account:
+<a href="{{ activation_url }}">{{ activation_url }}</a>
+
+If you did not request this, please ignore this email.
+
+Thanks,
+The Job Application Tracker Team
+{% endautoescape %}

@@ -1,0 +1,45 @@
+{% extends "base.html" %}  
+  {% block title %}{{ application.job_title }} at {{ application.get_company_name }}{% endblock %}
+
+  {% block content %}
+      <h2>{{ application.job_title }}</h2>
+      <h3>
+          {% if application.company %}
+              <a href="{{ application.company.website }}" target="_blank" title="Visit {{ application.company.name }} website">{{ application.company.name }}</a>
+          {% else %}
+              {{ application.company_name_manual }}
+          {% endif %}
+      </h3>
+
+      <div class="detail-view">
+          <p><strong>Status:</strong> {{ application.get_status_display }}</p>
+          <p><strong>Applied Date:</strong> {{ application.applied_date|date:"F d, Y" }}</p>
+          <p><strong>Application Source:</strong> {{ application.get_application_source_display|default:"N/A" }}</p>
+          {% if application.application_link %}
+              <p><strong>Application Link:</strong> <a href="{{ application.application_link }}" target="_blank">View Posting</a></p>
+          {% endif %}
+          {% if application.resume_submitted %}
+              <p><strong>Resume Submitted:</strong> <a href="{{ application.resume_submitted.url }}" target="_blank">View/Download Resume</a></p>
+          {% endif %}
+          {% if application.resume_match_score is not None %}
+              <p><strong>Resume Match Score:</strong> {{ application.resume_match_score|floatformat:2 }}%</p>
+          {% endif %}
+      </div>
+
+      {% if application.job_description %}
+          <h4>Job Description:</h4>
+          <pre style="white-space: pre-wrap; background-color: #f9f9f9; padding:10px; border:1px solid #eee; border-radius:4px;">{{ application.job_description }}</pre>
+      {% endif %}
+
+      {% if application.notes %}
+          <h4>My Notes:</h4>
+          <pre style="white-space: pre-wrap; background-color: #f9f9f9; padding:10px; border:1px solid #eee; border-radius:4px;">{{ application.notes }}</pre>
+      {% endif %}
+
+      <hr>
+      <p>
+          <a href="{% url 'job_applications:application_update' application.pk %}" class="button">Edit Application</a>
+          <a href="{% url 'job_applications:application_delete' application.pk %}" class="button button-danger" style="margin-left: 10px;">Delete Application</a>
+      </p>
+      <p><a href="{% url 'job_applications:application_list' %}">« Back to Application List</a></p>
+  {% endblock %}

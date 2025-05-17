@@ -1,0 +1,14 @@
+{% extends "base.html" %}  
+  {% block title %}Confirm Delete Company{% endblock %}
+
+  {% block content %}
+      <h2>Confirm Delete</h2>
+      <p>Are you sure you want to delete the company "<strong>{{ company.name }}</strong>"?</p>
+      <p><small>Note: Deleting a company will not delete associated job applications but will unlink them (company field will become empty for those applications).</small></p>
+      <form method="post">
+          {% csrf_token %}
+          <button type="submit" class="button button-danger">Yes, Delete</button>
+          <a href="{% url 'job_applications:company_list' %}" style="margin-left:10px;">Cancel</a>
+      </form>
+  {% endblock %}
+  

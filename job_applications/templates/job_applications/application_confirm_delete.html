@@ -1,0 +1,12 @@
+{% extends "base.html" %}  
+  {% block title %}Confirm Delete Application{% endblock %}
+
+  {% block content %}
+      <h2>Confirm Delete</h2>
+      <p>Are you sure you want to delete the application for "<strong>{{ application.job_title }}</strong>" at "<strong>{{ application.get_company_name }}</strong>"?</p>
+      <form method="post">
+          {% csrf_token %}
+          <button type="submit" class="button button-danger">Yes, Delete</button>
+          <a href="{% url 'job_applications:application_detail' application.pk %}" style="margin-left:10px;">Cancel</a>
+      </form>
+  {% endblock %}

@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+    <div class="row justify-content-center">
+        <div class="col-11 col-sm-10 col-md-8 col-lg-6 col-xl-5">
+            <div class="card shadow-sm">
+                <div class="card-body p-4">
+                    <h2 class="card-title text-center mb-4">Create Your Account</h2>
+                    {# Add an ID to the form to target it with JavaScript #}
+                    <form method="post" id="signupForm">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <div class="d-grid mt-3">
+                            {# Add an ID to the button and a span for the spinner #}
+                            <button type="submit" class="btn btn-primary btn-lg" id="signupButton">
+                                <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true" id="signupSpinner"></span>
+                                <span id="signupButtonText">Sign Up</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <p class="text-center mt-3 mb-5">
+                Already have an account? <a href="{% url 'login' %}">Login here</a>.
+            </p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_js %} {# Use the extra_js block from base.html #}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const signupForm = document.getElementById('signupForm');
+        const signupButton = document.getElementById('signupButton');
+        const signupButtonText = document.getElementById('signupButtonText');
+        const signupSpinner = document.getElementById('signupSpinner');
+
+        if (signupForm && signupButton && signupButtonText && signupSpinner) {
+            signupForm.addEventListener('submit', function() {
+                // Disable the button to prevent multiple submissions
+                signupButton.disabled = true;
+                
+                // Show the spinner
+                signupSpinner.classList.remove('d-none');
+                
+                // Change button text (optional)
+                signupButtonText.textContent = 'Signing Up...';
+                
+                // Optionally, you can add a timeout to re-enable the button
+                // if the submission takes too long or in case of an error
+                // where the page doesn't redirect.
+                // setTimeout(function() {
+                //     if (signupButton.disabled) { // Only re-enable if still disabled
+                //         signupButton.disabled = false;
+                //         signupSpinner.classList.add('d-none');
+                //         signupButtonText.textContent = 'Sign Up';
+                //         // You might want to show an error message here too
+                //     }
+                // }, 10000); // e.g., 10 seconds timeout
+            });
+        }
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,323 @@
+* {
+    padding: 0;
+    margin: 0;
+    /* etc. */
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa; 
+    color: #212529; 
+    line-height: 1.6;
+}
+
+.site-container { 
+    max-width: 1140px; 
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+}
+
+
+header.site-header { 
+    background-color: #343a40; 
+    color: white;
+    padding: 1.5em 0;
+    text-align: center;
+    margin-bottom: 0; 
+}
+
+header.site-header h1 {
+    margin: 0;
+    color: white;
+    font-size: 2.5em;
+}
+
+nav.site-nav .navbar-nav {
+    --bs-nav-link-padding-x: 1rem !important;
+    --bs-nav-link-padding-y: 0rem !important;
+}
+
+nav.site-nav .navbar-nav .nav-item .nav-link,
+nav.site-nav .navbar-nav .nav-item .navbar-text {
+    padding-left: 1rem; 
+    padding-right: 1rem;
+
+    padding-top: 0.5rem;    
+    padding-bottom: 0.5rem;
+
+    display: block; 
+    line-height: 1.5; 
+    vertical-align: middle; 
+
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 4px; 
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+nav.site-nav .navbar-nav .nav-item .nav-link {
+    color: #f8f9fa;
+}
+nav.site-nav .navbar-nav .nav-item .navbar-text {
+    color: #adb5bd;
+}
+
+nav.site-nav .navbar-nav .nav-item .nav-link:hover,
+nav.site-nav .navbar-nav .nav-item .nav-link.active {
+    background-color: #6c757d;
+    color: #ffffff;
+}
+
+nav.site-nav { /* This is the <nav class="... site-nav"> element */
+     /* background-color: #495057; */ /* Bootstrap's .bg-secondary should handle this */
+     box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* This is fine */
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+    color: #343a40;
+    margin-top: 1.5em;
+    margin-bottom: 0.75em;
+}
+h1 { font-size: 2.2em; }
+h2 { font-size: 1.8em; }
+
+
+/* Django Messages */
+.messages {
+    list-style: none;
+    padding: 0;
+    margin: 1em 0;
+}
+.messages li {
+    padding: 1em;
+    margin-bottom: 1em;
+    border-radius: .25rem;
+    border: 1px solid transparent;
+}
+.messages li.success { background-color: #d1e7dd; color: #0f5132; border-color: #badbcc; }
+.messages li.error   { background-color: #f8d7da; color: #842029; border-color: #f5c2c7; }
+.messages li.info    { background-color: #cff4fc; color: #055160; border-color: #b6effb; }
+.messages li.warning  { background-color: #fff3cd; color: #664d03; border-color: #ffecb5; }
+
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5em;
+    background-color: #fff; 
+    box-shadow: 0 0 10px rgba(0,0,0,0.03);
+}
+th, td {
+    border: 1px solid #dee2e6;
+    padding: 0.75rem;
+    text-align: left;
+    vertical-align: top;
+}
+th {
+    background-color: #e9ecef;
+    font-weight: 600;
+}
+
+/* Forms */
+.form-group {
+    margin-bottom: 1rem; /* Bootstrap's default margin */
+}
+.form-group label {
+    display: block;
+    margin-bottom: .5rem;
+    font-weight: 500;
+}
+.form-control, /* Use this class for Bootstrap-like inputs */
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="date"],
+textarea,
+select {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem; /* Bootstrap's padding */
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da; /* Bootstrap's border color */
+    appearance: none; /* For custom select styling */
+    border-radius: .25rem; /* Bootstrap's border-radius */
+    box-sizing: border-box;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="password"]:focus,
+input[type="date"]:focus,
+textarea:focus,
+select:focus {
+    border-color: #86b7fe; /* Bootstrap's focus border color */
+    outline: 0;
+    box-shadow: 0 0 0 .25rem rgba(13,110,253,.25); /* Bootstrap's focus shadow */
+}
+
+input[type="file"] {
+    /* Default styling is often browser-dependent and hard to override perfectly without JS or complex CSS */
+    padding: 7px 0; /* Keep simple for now */
+}
+.form-control-file { /* Custom class if needed for file inputs */
+     display: block; width: 100%;
+}
+
+.helptext {
+    font-size: 0.875em; /* Slightly smaller than Bootstrap's .form-text */
+    color: #6c757d; /* Bootstrap's muted color */
+    display: block;
+    margin-top: .25rem;
+}
+.errorlist { /* For Django form field errors */
+    color: #dc3545; /* Bootstrap's danger color */
+    list-style-type: none;
+    padding: 0;
+    margin: 0.25rem 0 0 0;
+    font-size: 0.875em;
+}
+.non-field-errors .errorlist { /* For Django form non-field errors */
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    background-color: #f8d7da;
+    border: 1px solid #f5c2c7;
+    border-radius: .25rem;
+}
+
+
+/* Buttons */
+.button, button[type="submit"], input[type="submit"], .btn { /* Added .btn for Bootstrap compatibility */
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    background-color: #0d6efd; /* Bootstrap primary blue */
+    border: 1px solid #0d6efd;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    margin-right: 0.5em; /* Add some spacing between buttons */
+    margin-bottom: 0.5em; /* Add some spacing if buttons wrap */
+}
+.button:hover, button[type="submit"]:hover, input[type="submit"]:hover, .btn:hover {
+    background-color: #0b5ed7; /* Darker blue on hover */
+    border-color: #0a58ca;
+}
+.button-danger, .btn-danger { /* Bootstrap's danger button */
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+.button-danger:hover, .btn-danger:hover {
+    background-color: #bb2d3b;
+    border-color: #b02a37;
+}
+.button-secondary, .btn-secondary {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+.button-secondary:hover, .btn-secondary:hover {
+    background-color: #5c636a;
+    border-color: #565e64;
+}
+
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    padding-left: 0;
+    list-style: none;
+    margin: 1.5rem 0;
+}
+.pagination .step-links a, .pagination .current {
+    position: relative;
+    display: block;
+    padding: .5rem .75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #0d6efd; /* Bootstrap primary color for links */
+    background-color: #fff;
+    border: 1px solid #dee2e6; /* Bootstrap border color */
+    text-decoration: none;
+}
+.pagination .step-links a:hover {
+    z-index: 2;
+    color: #0a58ca;
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+}
+.pagination .current {
+    z-index: 3;
+    color: #fff;
+    background-color: #0d6efd; /* Bootstrap primary color */
+    border-color: #0d6efd;
+}
+.pagination .step-links span:first-child a, .pagination .step-links span:first-child span { border-top-left-radius: .25rem; border-bottom-left-radius: .25rem; }
+.pagination .step-links span:last-child a, .pagination .step-links span:last-child span { border-top-right-radius: .25rem; border-bottom-right-radius: .25rem; margin-left: -1px;}
+
+
+/* Utility classes */
+.text-center { text-align: center; }
+.mt-1 { margin-top: .25rem !important; }
+.mt-2 { margin-top: .5rem !important; }
+.mt-3 { margin-top: 1rem !important; }
+.mb-1 { margin-bottom: .25rem !important; }
+.mb-2 { margin-bottom: .5rem !important; }
+.mb-3 { margin-bottom: 1rem !important; }
+
+/* Action links in tables */
+.action-links a {
+    margin-right: 0.5em;
+    text-decoration: none;
+    color: #0d6efd;
+}
+.action-links a:hover {
+    text-decoration: underline;
+}
+
+/* Detail View Specifics */
+.detail-view p { margin-bottom: 0.7em; }
+.detail-view strong { min-width: 150px; display: inline-block; font-weight: 500; }
+.detail-view pre {
+    white-space: pre-wrap;
+    background-color: #f8f9fa;
+    padding: 15px;
+    border: 1px solid #e9ecef;
+    border-radius: .25rem;
+    font-size: 0.95em;
+    line-height: 1.5;
+    max-height: 300px; /* Optional: if JD/notes are very long */
+    overflow-y: auto;   /* Optional: scroll for long content */
+}
+
+/* Footer */
+footer.site-footer { /* Renamed */
+    text-align: center;
+    padding: 2em 0;
+    margin-top: 2em;
+    color: #6c757d; /* Bootstrap muted color */
+    font-size: 0.9em;
+    border-top: 1px solid #e9ecef;
+}
